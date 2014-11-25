@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Web Applications [UAM]- by Damian Sosnowski</title>
+
+		<meta name="author" content="Damian Sosnowski">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Web Appliations</h1>
+					<h3>Resources</h3>
+					<p>Materials: <a href="https://github.com/sosnowski/Kurs_UAM">https://github.com/sosnowski/Kurs_UAM</a></p>
+				</section>
+
+				<section>
+					<h2>Add some serious data loading to your application</h2>
+				</section>
+
+				<section>
+					<h3>API to implement</h3>
+				</section>
+
+				<section>
+					<h3>Http</h3>
+
+					<p>Create the resource load function for the given url</p>
+
+					<pre class="fragment"><code>
+var callback = function (err, response) {
+	if (err) {
+	    throw err; //request error, do something
+	}
+
+	console.log(response); //object with the server data;
+};
+					</code></pre>
+					<pre><code>
+Http.request('/api/todos', 'GET', requestData, callback);
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Http.request</h3>
+					<ul>
+						<li>Performs AJAX request to the given url</li>
+						<li>Sets proper content type header (json)</li>
+						<li>Loads server data and calls callback with proper arguments</li>
+						<li>Pass error to the callback if anything goas wrong (or server fails)</li>
+					</ul>
+					<pre><code>
+					if (200 <= status && status < 300) {
+						//request ok
+					}
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>List Controller - load</h3>
+					<ul>
+						<li>OnStart: Load data from the server</li>
+						<li>When request is pending: display some loading indicator</li>
+						<li>On success: populate store</li>
+						<li>On error: display message</li>
+						<li>GET /api/todos</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>List Controller - save</h3>
+					<ul>
+						<li>Save data after every change (add new/change state)</li>
+						<li>On Save: Send POST request to the server with the array of records</li>
+						<li>When request is pending: display some loading indicator</li>
+						<li>On success: Display confirmation</li>
+						<li>On error: Display error message</li>
+						<li>POST /api/todos</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>NodeJS server</h3>
+					<p>Server saves data in the memory. Restart it to clear the data.</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				width: 1600,
+				height: 1000,
+
+				theme: 'night', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+	</body>
+</html>
