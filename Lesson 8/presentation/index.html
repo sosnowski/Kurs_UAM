@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Web Applications [UAM]- by Damian Sosnowski</title>
+
+        <meta name="author" content="Damian Sosnowski">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+        <script>
+            if( window.location.search.match( /print-pdf/gi ) ) {
+                var link = document.createElement( 'link' );
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = 'css/print/pdf.css';
+                document.getElementsByTagName( 'head' )[0].appendChild( link );
+            }
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>Web Appliations</h1>
+                    <h3>REST Services</h3>
+                    <p>Materials: <a href="https://github.com/sosnowski/Kurs_UAM">https://github.com/sosnowski/Kurs_UAM</a></p>
+                </section>
+
+                <section>
+                    <h2>What is REST?</h2>
+
+                    <cite>REST is a simple way to organize interactions between independent systems.</cite>
+                </section>
+
+                <section>
+                    <h2>Agile architecture</h2>
+                    <img src="img/rest.png" class="graph"/>
+                </section>
+
+                <section>
+                    <h3>Uses HTTP protocol</h3>
+                    <ul>
+                        <li>Client - Server</li>
+                        <li>HTTP body to send the data</li>
+                        <li>URL to define the resource</li>
+                        <li>HTTP headers to define the request details</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>REST - URL</h3>
+                    <h4>Defines the access point to the resource</h4>
+                </section>
+
+                <section>
+                    <h4>Load all users</h4>
+                    <pre><code>
+/users
+</code></pre>
+                    <h4>Load one user</h4>
+                    <pre><code>
+/users/:userId
+</code></pre>
+                    <h4>Load all emails of the given user</h4>
+                    <pre><code>
+/users/:userId/emails
+</code></pre>
+                </section>
+
+                <section>
+                    <h4>Use only nouns, no actions in the URL</h4>
+                    <pre><code>
+// NOT
+/users/load
+/user/add
+/users/add_all_comments_of_this_user
+                </code></pre>
+                </section>
+
+                <section>
+                    <h4>To define actions (CRUD), use HTTP methods</h4>
+                    <ul>
+                        <li><strong>GET</strong> - Read data</li>
+                        <li><strong>POST</strong> - Create data</li>
+                        <li><strong>PUT</strong> - Update</li>
+                        <li><strong>DELETE</strong> - Remove</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Examples</h4>
+
+                    <pre><code>
+GET /users - Get users
+GET /users/:userId - get particular user
+POST /users - create new user (actual data can be send in the body)
+PUST /users/:userId - Update the user (that has this id)
+DELETE /users/:userId
+</code></pre>
+                </section>
+
+                <section>
+                    <h3>Good API?</h3>
+                    <ul>
+                        <li>Identify resources and collections</li>
+                        <li>Identify access points</li>
+                        <li>Don't limit the access</li>
+                        <li>Keep it as simple as possible</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Request details</h3>
+                    <h4>Use HTTP headers to define those</h4>
+                </section>
+
+                <section>
+                    <h3>Request format</h3>
+                    <p>Define the format that should be used to send the request data (Content-Type header)</p>
+
+                    <pre><code>
+httpRequest.setRequestHeader('Content-Type', 'application/json');
+                    </code></pre>
+                    <p>text/xml, application/xml, application/rss+xml</p>
+                </section>
+
+                <section>
+                    <h3>Accepted response format</h3>
+                <pre><code>
+httpRequest.setRequestHeader('Accept', 'application/json');
+                </code></pre>
+                </section>
+
+                <section>
+                    <h3>Response</h3>
+                    <p>Content itself. Don't wrap it in additional objects.</p>
+                    <pre><code>
+var collection = [];
+response.json(collection);
+
+//NOT:
+response.json({
+    status: true,
+    error: false,
+    content: collection,
+    errorMsg: null
+});
+</code></pre>
+                </section>
+
+                <section>
+                    <h3>Errors</h3>
+                    <h4>Use HTTP responce codes to report error or success</h4>
+                    <pre><code>
+response.status(400).send('Bad Request');
+</code></pre>
+                </section>
+
+                <section>
+                    <h3>Some error codes</h3>
+                    <ul>
+                        <li><strong>200</strong> – OK – Eyerything is working</li>
+                        <li><strong>201</strong> – OK – New resource has been created</li>
+                        <li><strong>204</strong> – OK – The resource was successfully deleted</li>
+                        <li><strong>400</strong> – Bad Request – The request was invalid or cannot be served. The exact error should be explained in the error payload. E.g. „The JSON is not valid“</li>
+                        <li><strong>401</strong> – Unauthorized – The request requires an user authentication</li>
+                        <li><strong>403</strong> – Forbidden – The server understood the request, but is refusing it or the access is not allowed.</li>
+                        <li><strong>404</strong> – Not found – There is no resource behind the URI.</li>
+                        <li><strong>500</strong> - Interal server error - When all else fails; generally, a 500 response is used when processing fails due to unanticipated circumstances on the server side, which causes the server to error out.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Simple node.js server</h2>
+                </section>
+
+                <section>
+                    <pre><code>
+var express = require('express');
+var bodyParser = require('body-parser');
+var app = express();
+var savedData = [];
+
+app.use(express.static('./'));
+// configure middleware so the server can load and parse request body
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.text());
+app.use(bodyParser.json());</code></pre>
+<pre><code>
+// Routing: GET /users
+app.get('/users', function (reqeust, response) {
+    //perform some actions here
+});
+
+app.listen(8080);</code></pre>
+                </section>
+
+                <section>
+                    <h3>Simple GET request</h3>
+                    <pre><code>
+app.get('/users/:userId', function (request, response) {
+    var userId = request.params.userId;
+    loadUserRecordFromDb(userId, function (err, record) {
+        if (err) {
+            //or some better error number
+            response.status(500).send('Unable to load user record');
+            return;
+        }</code></pre>
+<pre><code>
+        if (request.is('json')) {
+            response.json(record);
+        } else {
+            response.status(406).send('Not Acceptable');
+        }
+    });
+});</code></pre>
+
+                </section>
+
+                <section>
+                    <h3>POST request</h3>
+                    <pre><code>
+app.post('/users', function (req, res) {
+    //is the content-type is json, this should be a record;
+    var newUserData = req.body;
+    if (!newUserData) {
+        res.status(400).send('Bad request data');
+        return;
+    }</code></pre><pre><code>
+    createNewUser(newUserData, function (err, newJson) {
+        if (err) {
+            // ...
+        }
+        res.status(201).json(newJson);
+    });
+});</code></pre>
+                </section>
+
+                <section>
+                    <h2>Materials</h2>
+                    <p><a href="http://code.tutsplus.com/tutorials/a-beginners-guide-to-http-and-rest--net-16340">http://code.tutsplus.com/tutorials/a-beginners-guide-to-http-and-rest--net-16340</a></p>
+                    <p><a href="http://expressjs.com/">http://expressjs.com/</a></p>
+                </section>
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                width: 1600,
+                height: 1000,
+
+                theme: 'night', // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Parallax scrolling
+                // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+                // parallaxBackgroundSize: '2100px 900px',
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+    </body>
+</html>
