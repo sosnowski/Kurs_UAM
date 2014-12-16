@@ -15,13 +15,12 @@
     </head>
 
     <body>
-        <div class="list">
-            <input type="text" class="field"/><button class="submit">Add</button>
+        <div class="list" ng-controller="TodoCtrl">
+            <input type="text" class="field" ng-model="inputValue"/><button class="submit" ng-click="addNew()">Add</button>
             <ul>
-                <li>Some element</li>
-                <li>Some element</li>
-                <li>Some element</li>
-                <li>Some element</li>
+                <li ng-repeat="element in elements"
+                ng-class="{'inactive': element.status === false}"
+                ng-click="element.status = false">{{element.value}}</li>
             </ul>
         </div>
     </body>
