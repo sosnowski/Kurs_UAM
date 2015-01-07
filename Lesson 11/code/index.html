@@ -12,7 +12,9 @@
         <script src="js/directive.js"></script>
     </head>
 
-    <body>
+    <body ng-controller="AppCtrl">
+    	<uam-search-field value="searchValue" show-clear="false"></uam-search-field>
 
+    	<p>Current search: {{searchValue}}</p>
     </body>
 </html>
