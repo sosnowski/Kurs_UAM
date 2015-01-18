@@ -1,12 +1,13 @@
 var express    = require('express');
 var bodyParser = require('body-parser');
 var _          = require('lodash');
+var faker      = require('faker');
 var app        = express();
 var helpers    = require('./helpers');
-var emails = [], sent = [], labels = [];
+var emails = [], sent = [];
 var invalidRequest = function (req, res) {
 	return function (record) {
-
+		req.status(400).send('Invalid request format!');
 	};
 };
 
@@ -20,104 +21,100 @@ app.use(bodyParser.text());
 // parse application/json
 app.use(bodyParser.json());
 
+//define routing
 
-//IN PROGRESS
-// //define routing here
+app.get('/emails', function (req, res) {
+	setTimeout(function () {
+		res.json(emails);
+	}, 1000);
+});
 
-// // GET SENT EMAILS
-// app.get('/sent', function (req, res) {
-// 	setTimeout(function () {
-// 		res.json(sent);
-// 	}, 600);
-// });
+app.get('/emails/:id', function (req, res) {
+	var record = _.find(emails, function (email) {
+		return email.id === req.params.id;
+	});
 
-// //SEND EMAIL
+	if (!record) {
+		res.status(404).send('Email not found');
+	} else {
+		res.json(record);
+	}
+});
 
-// app.post('/sent', function (req, res) {
-// 	helpers.verifySendRequest(req.body, function (record) {
-// 		record.id = Date.now();
+app.put('/emails/:id', function (req, res) {
+	var record = _.find(emails, function (email) {
+		return email.id === req.params.id;
+	});
 
-// 		sent.push(record);
-// 		res.json(record);
-// 	}, invalidRequest(req, res));
-// });
+	if (!record) {
+		res.status(404).send('Email not found');
+	} else {
+		helpers.verifyEmail(req.body, function (newRecord) {
+			_.assign(record, newRecord);
+			res.json(record);
 
-// //GET LABELS
-// app.get('/labels', function (req, res) {
-// 	setTimeout(function () {
-// 		res.json(labels);
-// 	}, 600);
-// });
+			helpers.saveToFile('emails', emails);
+		}, invalidRequest(req, res));
+	}
+});
 
-// //CREATE LABEL
-// app.post('/labels', function (req, res) {
-// 	helpers.verifyLabel(req.body, function (record) {
-// 		record.id = Date.now();
-// 		labels.push(record);
-// 		res.json(record);
-// 	}, invalidRequest(req, res));
-// });
+app.delete('/emails/:id', function (req, res) {
+	var emailIndex = _.findIndex(emails, function (email) {
+		return email.id === req.params.id;
+	});
 
-// app.put('/labels/:id', function (req, res) {
-// 	helpers.verifyLabel(req.body, function (newRecord) {
-// 		var currentRecord = _.find(labels, function (label) {
-// 			return label.id === req.params.id;
-// 		});
-// 		if (!currentRecord) {
-// 			res.send(404, '');
-// 		} else {
-// 			_.assign(currentRecord, newRecord);
-// 			res.json(currentRecord);
-// 		}
-// 	}, invalidRequest(req, res));
-// });
+	if (emailIndex === -1) {
+		res.status(404).send('Email not found');
+	} else {
+		res.json(emails.splice(emailIndex, 1)[0]);
+	}
+});
 
-// //GET ALL EMAILS | PARAMS: ?labels=label1,label2&query=test
-// app.get('/emails', function (req, res) {
-// 	//TODO: filters
-// 	var labels = req.query.labels ? req.query.labels.split(',') : [];
-// 	setTimeout(function () {
-// 		res.json(emails);
-// 	});
-// });
 
-// //GET ONE EMAIL
-// app.get('/emails/:id', function (req, res) {
-// 	var record = _.find(emails, function (email) {
-// 		return email.id === req.params.id;
-// 	});
+app.get('/sent', function (req, res) {
+	setTimeout(function () {
+		res.json(sent);
+	}, 1000);
+});
 
-// 	if (!record) {
-// 		res.send(404, '');
-// 	} else {
-// 		res.json(record);
-// 	}
-// });
+app.post('/sent', function (req, res) {
+	helpers.verifySent(req.body, function (record) {
+		sent.push(record);
+		res.json(record);
 
-// //CREATE EMAIL
-// app.post('/emails', function (req, res) {
-// 	helpers.verifyEmail(req.body, function (record) {
-// 		record.id = Date.now();
-// 		emails.push(record);
-// 		res.json(record);
-// 	}, invalidRequest(req, res));
-// });
+		helpers.saveToFile('sent', sent);
+	}, invalidRequest(req, res));
+});
 
-// //UPDATE EMAIL
-// app.put('/emails/:id', function (req, res) {
-// 	helpers.verifyEmail(req.body, function (newRecord) {
-// 		var currentRecord = _.find(labels, function (label) {
-// 			return label.id === req.params.id;
-// 		});
-// 		if (!currentRecord) {
-// 			res.send(404, '');
-// 		} else {
-// 			_.assign(currentRecord, newRecord);
-// 			res.json(currentRecord);
-// 		}
-// 	}, invalidRequest(req, res));
-// });
+//load saved emails
 
+helpers.loadFromFile('emails', function (err, data) {
+	if (err) {
+		throw err;
+	}
+	emails = data;
+});
+
+helpers.loadFromFile('sent', function (err, data) {
+	if (err) {
+		throw err;
+	}
+	sent = data;
+});
+
+//"receive" new email every 2 minutes
+setInterval(function () {
+	emails.push({
+		id: "" + Date.now(),
+		read: false,
+		title: faker.lorem.sentence(),
+		sender: faker.internet.email(),
+		content: faker.lorem.paragraphs(3),
+		received: Date.now()
+	});
+	helpers.saveToFile('emails', emails);
+	console.log('New email added');
+}, 1000 * 60);
 
 
 
