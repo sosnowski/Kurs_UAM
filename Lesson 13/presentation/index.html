@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Web Applications [UAM]- by Damian Sosnowski</title>
+
+        <meta name="author" content="Damian Sosnowski">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+        <script>
+            if( window.location.search.match( /print-pdf/gi ) ) {
+                var link = document.createElement( 'link' );
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = 'css/print/pdf.css';
+                document.getElementsByTagName( 'head' )[0].appendChild( link );
+            }
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>Web Appliations</h1>
+                    <h3>Unit tests</h3>
+                    <p>Materials: <a href="https://github.com/sosnowski/Kurs_UAM">https://github.com/sosnowski/Kurs_UAM</a></p>
+                </section>
+
+                <section>
+                    <h3>Unit tests?</h3>
+                    <ul>
+                        <li>Automated set of conditions that check your code</li>
+                        <li>Defines your specification and makes sure that your code meets it</li>
+                        <li>You can quickly check if your code works properly</li>
+                        <li>Used mostly for low level functionalities</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>TDD</h3>
+                    <h4>Focus on tests, write them at first, then write the code</h4>
+                    <ul>
+                        <li>Write first test (test fails - is red)</li>
+                        <li>Write the code that passes this one test (green)</li>
+                        <li>Write second test (red)</li>
+                        <li>Write the code for the second test (green)</li>
+                        <li>Refactor when needed</li>
+                        <li>???</li>
+                        <li>Profit</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Why? You focus on the goal, on the specification, not on the implementation</h4>
+                    <p>Theoretically, it gives you the simplest, working solution</p>
+                </section>
+
+                <section>
+                    <h2>Testing JavaScript with Jasmine (BDD)</h2>
+                    <p>Specrunner.html</p>
+                </section>
+
+                <section>
+                    <h3>Tests structure</h3>
+                    <ul>
+                        <li>describe - Wrap the set of related tests</li>
+                        <li>it - single test, should be as simple as possible</li>
+                        <li>expect(va).toBe(3) - single assertion</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>describe - Adding two values
+                            <ul>
+                                <li>it - Should add two numbers</li>
+                                <li>it - Should add two negative numbers</li>
+                                <li>it - Should throw if provided with wrong argument type</li>
+                            </ul>
+                        </li>
+                        <li>describe - Dividing values
+                            <ul>
+                                <li>it - Should divide the numbers</li>
+                                <li>it - Should throw when dividing by zero</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    etc.
+                </section>
+
+                <section>
+                    <h1>Assertions</h1>
+                </section>
+
+                <section>
+                    <h4>Simple comparisons</h4>
+                    <pre><code>
+expect(value).toBe("something"); //strict comparison "==="
+expect(value).toEqual([1, 2, 3]); //deep comparison, compare the whole structure
+expect(value).not.toBe('smth');
+expect(value).not.toEqual();
+
+expect(12).toEqual(jasmine.any(Number));
+</code></pre>
+                </section>
+
+                <section>
+                    <h4>Exceptions</h4>
+                <pre><code>
+expect(func).toThrow();
+expect(function () {
+    calc.divide(5, 0);
+}).toThrow();
+expect(func).not.toThrow();</code></pre>
+                </section>
+
+                <section>
+                <h4>Spies</h4>
+                <p>We can spy on methods, functions, to check the behavior</p>
+                <pre><code>
+var helpers;
+beforeEach(function () {
+    helpers = {
+        countSmth: jasmine.createSpy('countSmth').and.returnValue(666);
+    };
+});
+
+it('Should call the helper', function () {
+    expect(helpers.countSmth).toHaveBeenCalled();
+    expect(helpers.countSmth.calls.count()).toBe(1);
+});
+
+                </code></pre>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                width: 1600,
+                height: 1000,
+
+                theme: 'night', // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Parallax scrolling
+                // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+                // parallaxBackgroundSize: '2100px 900px',
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+    </body>
+</html>

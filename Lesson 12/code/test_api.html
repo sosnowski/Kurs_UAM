@@ -40,13 +40,12 @@
 
         	$scope.updateEmail = function () {
         		$http.put('/emails/'+$scope.emailId, {
-        			title: $scope.newEmailTitle,
-        			random: Math.random()
+        			// title: $scope.newEmailTitle,
+                    read: true
+        			// random: Math.random()
         		}).success(function (res) {
         			$scope.udateEmailRes = res;
-        		}).failure(function (res) {
-        			$scope.udateEmailRes = 'ERROR: ' + res;
-        		});
+        		})
         	};
         	$scope.deleteEmail = function () {
         		$http.delete('/emails/'+$scope.emailId, {
@@ -54,17 +53,13 @@
         			random: Math.random()
         		}).success(function (res) {
         			$scope.deleteEmailRes = res;
-        		}).failure(function (res) {
-        			$scope.deleteEmailRes = 'ERROR: ' + res;
-        		});
+        		})
         	};
 
         	$scope.getSent = function () {
         		$http.get('/sent').success(function (res) {
         			$scope.sentRes = res;
-        		}).failure(function (res) {
-        			$scope.sentRes = 'ERROR: ' + res;
-        		});
+        		})
         	};
 
         	$scope.createSent = function () {
@@ -76,9 +71,7 @@
         			sent: Date.now()
         		}).success(function (res) {
         			$scope.createSentRes = res;
-        		}).failure(function (res) {
-        			$scope.createSentRes = 'ERROR: ' + res;
-        		});
+        		})
         	};
         });
         </script>
