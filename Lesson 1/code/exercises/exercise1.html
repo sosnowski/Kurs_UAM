@@ -1,0 +1,43 @@
+<!doctype html>  
+<head>  
+  <meta charset="utf-8">  
+  <title>Exercise 1</title>    
+</head>  
+  
+<body>  
+    
+    <p>Check Variables: x = ?, y = ?, z = ?</p>
+    <p>Test: x = ?, y = ?, z = ?</p>
+    <p>Check Variables: x = ?, y = ?, z = ?</p>
+    
+    <button id="testButton">Test</button>
+    <button id="checkVariablesButton">Check Variables</button>
+    
+    <script type="text/javascript">
+        var x = 4;
+        y = 10;
+        
+        function checkVariables() {
+            alert('x: ' + x); //x = ??
+            alert('y: ' + y); //y = ??
+            alert('z: ' + z); //z = ??
+        }
+        
+        function test() {
+            var x = 1;
+            y = 3;
+            z = 8;
+            
+            alert('x: ' + x); //x = ??
+            alert('y: ' + y); //y = ??
+            alert('z: ' + z); //z = ??
+        }
+        
+    </script>
+    
+    <script type="text/javascript">
+        document.getElementById("testButton").addEventListener("click", test);
+        document.getElementById("checkVariablesButton").addEventListener("click", checkVariables);
+    </script>
+</body>
+</html>  

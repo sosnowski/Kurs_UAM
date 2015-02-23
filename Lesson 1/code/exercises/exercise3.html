@@ -1,0 +1,111 @@
+<!doctype html>  
+<head>  
+  <meta charset="utf-8">  
+  <title>Exercise 3</title>    
+</head>  
+
+<body>
+    
+    <p>
+        Standard Books: <br />
+        Free: <label id="standardFreeLabel"></label> <br />
+        Borrowed: <label id="standardBorrowedLabel"></label>
+    </p>
+    
+    <p>
+        VIP Books: <br />
+        Free: <label id="vipFreeLabel"></label> <br />
+        Borrowed: <label id="vipBorrowedLabel"></label>
+    </p>
+    
+    <p>
+        <input id="titleInput" />
+    </p>
+    
+    <button id="addStandardBookBtn">Add Standard Book</button>
+    <button id="addVipBookBtn">Add VIP Book</button>
+    <button id="borrowStandardBtn">Borrow Standard Book</button>
+    <button id="borrowVipBtn">Borrow VIP Book</button>
+    
+    <script type="text/javascript">
+        
+        var sampleBook = {
+            title: 'Harry Potter',
+            isBorrowed: false
+        };
+        
+        var library = {
+            standards: [],
+            vip: []
+        };
+        
+        
+        function addStandardBook(title) {
+            //!!!!!!!!!
+        }
+        
+        function addVipBook(title) {
+            //!!!!!!!!!
+        }
+        
+        function borrowStandardBook(title) {
+            //!!!!!!!!!
+        }
+        
+        function borrowVipBook(title) {
+            //!!!!!!!!!
+        }
+        
+        
+        function printStandards() {
+            var free = 's', borrowed = 'sb';
+            
+            //!!!!!!!!!
+            
+            document.getElementById("standardFreeLabel").innerHTML = free;
+            document.getElementById("standardBorrowedLabel").innerHTML = borrowed;
+        }
+        
+        function printVip() {
+            var free = 'v', borrowed = 'vb';
+            
+            //!!!!!!!!!
+            
+            document.getElementById("vipFreeLabel").innerHTML = free;
+            document.getElementById("vipBorrowedLabel").innerHTML = borrowed;
+        }
+        
+    </script>
+    
+    
+    <script type="text/javascript">
+        
+        document.getElementById("addStandardBookBtn").addEventListener("click", function() { 
+            var title = document.getElementById("titleInput").value;
+            addStandardBook(title);
+            printStandards();
+            printVip();
+        });
+        document.getElementById("addVipBookBtn").addEventListener("click", function() { 
+            var title = document.getElementById("titleInput").value;
+            addVipBook(title);
+            printStandards();
+            printVip();
+        });
+        document.getElementById("borrowStandardBtn").addEventListener("click", function() { 
+            var title = document.getElementById("titleInput").value;
+            borrowStandardBook(title);
+            printStandards();
+            printVip();
+        });
+        document.getElementById("borrowVipBtn").addEventListener("click", function() { 
+            var title = document.getElementById("titleInput").value;
+            borrowVipBook(title);
+            printStandards();
+            printVip();
+        });
+
+    </script>
+    
+</body>
+</html>  
