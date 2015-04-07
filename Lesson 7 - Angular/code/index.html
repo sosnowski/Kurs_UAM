@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" ng-app="myapp">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Web Applications [UAM]- by Damian Sosnowski</title>
+
+        <meta name="author" content="Damian Sosnowski">
+
+        <link rel="stylesheet" href="styles.css">
+
+        <script src="lib/angular.js"></script>
+        <script src="js/todoctrl.js"></script>
+    </head>
+
+    <body>
+        <div class="list" ng-controller="TodoCtrl">
+            <input type="text" class="field" ng-model="inputValue"/><button class="submit" ng-click="addNew()">Add</button>
+            <ul>
+                <li ng-repeat="element in elements"
+                ng-class="{'inactive': element.status === false}"
+                ng-click="element.status = false">{{element.value}}</li>
+            </ul>
+        </div>
+    </body>
+</html>
