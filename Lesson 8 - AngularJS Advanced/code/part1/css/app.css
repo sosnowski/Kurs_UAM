@@ -1,0 +1,67 @@
+body {
+	margin: 20px;
+	font: normal 14px 'Open Sans', sans-serif;
+	background: #1C7D7F;
+}
+
+header {
+	color: #33E2E5;
+	font-size: 1.1em;
+	text-align: right;
+	margin: 1em 0;
+}
+
+.container {
+	display: flex;
+}
+
+.container .left {
+	flex: 1;
+}
+
+.container .right {
+	flex: 3;
+	background: #0E3F40;
+}
+
+ul {
+	list-style: none;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul li {
+	margin: 0;
+	padding: 0;
+	display: block;
+	padding: 1em;
+	margin: 2px;
+	background: #2ABCBF;
+	cursor: pointer;
+}
+
+ul li:hover {
+	background: #33E2E5;
+}
+
+.left input {
+	display: block;
+	width: 100%;
+	line-height: 2em;
+}
+
+.left p {
+	margin: 2px;
+	padding: 0;
+}
+.right p {
+	margin: 4px;
+	padding: 1em;
+	background: #1C7D7F;
+}
+
+
+/*.ng-scope {
+	border: 3px solid red !important;
+}*/
