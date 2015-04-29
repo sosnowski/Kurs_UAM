@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Web Applications [UAM]- by Damian Sosnowski</title>
+
+        <meta name="author" content="Damian Sosnowski">
+        
+        <link rel="stylesheet" type="text/css" href="styles.css">
+
+        <script src="lib/angular.js"></script>
+        <script src="js/app.js"></script>
+        
+        <!-- add some controllers here-->
+        <script src="js/additionCtrl.js"></script>
+        
+        <!-- add some directives here-->
+        <script src="js/addition.js"></script>
+        
+    </head>
+
+    <body ng-controller="CarCtrl">
+        <p>
+            <button ng-click="addAddition()">Add addition</button>
+        </p>
+        
+        <p>
+            <addition ng-repeat="oneAddition in additions" addition-obj="oneAddition"></addition>
+        </p>
+        
+        <hr />
+        
+        <p>Your car:</p>
+        
+        <p>
+            <ul>
+                <li ng-repeat="addition in additions">
+                    {{addition.name}} 
+                    <span class="{{addition.color}}">{{addition.color}}</span>
+                </li>
+            </ul>
+        </p>
+        
+    </body>
+</html>

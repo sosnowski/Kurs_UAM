@@ -1,0 +1,9 @@
+<div class="addition">
+    <select ng-model="selectedAddition" ng-options="add for add in possibleAdditions" ng-change="changeAdditionName(add)">{{add}}</select>
+    <div class="color-container">
+        <div class="color-rect red" ng-click="changeColor('red')"></div>
+        <div class="color-rect green" ng-click="changeColor('green')"></div>
+        <div class="color-rect blue" ng-click="changeColor('blue')"></div>
+        <div class="color-rect purple" ng-click="changeColor('purple')"></div>
+    </div>
+</div>
