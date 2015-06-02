@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1421610518917,
+    "title": "test1",
+    "content": "Cos tam",
+    "receivers": [
+      "sosnowski@outlook.com"
+    ],
+    "sent": 1421610518917
+  },
+  {
+    "id": 1421610528931,
+    "title": "test2",
+    "content": "Cos tam",
+    "receivers": [
+      "sosnowski@outlook.com"
+    ],
+    "sent": 1421610528931
+  },
+  {
+    "id": 1433279831521,
+    "title": "nenenen",
+    "content": "Cos tam",
+    "receivers": [
+      "sosnowski@outlook.com"
+    ],
+    "sent": 1433279831521
+  },
+  {
+    "id": 1433279842324,
+    "title": "nenenen",
+    "content": "Cos tam",
+    "receivers": [
+      "sosnowski@outlook.com"
+    ],
+    "sent": 1433279842324
+  },
+  {
+    "id": 1433280001205,
+    "title": "aaaaaa",
+    "content": "Cos tam",
+    "receivers": [
+      "sosnowski@outlook.com"
+    ],
+    "sent": 1433280001205
+  }
+]

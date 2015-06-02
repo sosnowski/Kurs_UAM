@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Email Client</title>
+
+        <meta name="author" content="Damian Sosnowski">
+
+        <style>
+        body > div {
+        	margin: 20px;
+        	border: 1px solid black;
+        }
+
+        textarea {
+        	display: block;
+        	width: 90%;
+        	height: 300px;
+        }
+        </style>
+
+        <script src="lib/angular.js"></script>
+        <script type="text/javascript">
+        angular.module('app', []).controller('TestCtrl', function ($scope, $http) {
+        	$scope.getEmails = function () {
+        		$http.get('/emails').success(function (res) {
+        			$scope.emailsRes = res;
+        		});
+        	};
+
+        	$scope.getEmail = function () {
+        		$http.get('/emails/'+$scope.emailId).success(function (res) {
+        			$scope.emailRes = res;
+        		}).error(function (res) {
+        			$scope.emailRes = 'ERROR: ' + res;
+        		});
+        	};
+
+        	$scope.updateEmail = function () {
+        		$http.put('/emails/'+$scope.emailId, {
+        			title: $scope.newEmailTitle,
+                    read: true
+        			// random: Math.random()
+        		}).success(function (res) {
+        			$scope.udateEmailRes = res;
+        		})
+        	};
+        	$scope.deleteEmail = function () {
+        		$http.delete('/emails/'+$scope.emailId, {
+        			title: $scope.newEmailTitle,
+        			random: Math.random()
+        		}).success(function (res) {
+        			$scope.deleteEmailRes = res;
+        		})
+        	};
+
+        	$scope.getSent = function () {
+        		$http.get('/sent').success(function (res) {
+        			$scope.sentRes = res;
+        		})
+        	};
+
+        	$scope.createSent = function () {
+        		$http.post('/sent', {
+        			id: Date.now(),
+        			title: $scope.sentTitle,
+        			content: 'Cos tam',
+        			receivers: ['sosnowski@outlook.com'],
+        			sent: Date.now()
+        		}).success(function (res) {
+        			$scope.createSentRes = res;
+        		})
+        	};
+        });
+        </script>
+    </head>
+
+    <body ng-controller="TestCtrl">
+    <div>
+    	<button ng-click="getEmails()">Get Emails</button>
+    	<textarea>
+    	{{emailsRes}}
+    	</textarea>
+    </div>
+
+    <div>
+    <input type="text" ng-model="emailId"/>
+    <button ng-click="getEmail()">Get Email by Id</button>
+    <textarea>
+    	{{emailRes}}
+    </textarea>
+    </div>
+
+    <div>
+    New title <input type="text" ng-model="newEmailTitle"/>
+    <button ng-click="updateEmail()">UpdateEmail</button>
+    <textarea>
+    	{{udateEmailRes}}
+    </textarea>
+    </div>
+
+    <div>
+    <button ng-click="deleteEmail()">Delete email</button>
+    <textarea>
+    	{{deleteEmailRes}}
+    </textarea>
+    </div>
+    <h1>SENT</h1>
+
+    <div>
+    	<button ng-click="getSent()">GET Sent</button>
+    	<textarea>
+    	{{sentRes}}
+    	</textarea>
+    </div>
+
+    <div>
+    	New title <input type="text" ng-model="sentTitle"/>
+    	<button ng-click="createSent()">Create Sent</button>
+    	<textarea>
+    	{{createSentRes}}
+    	</textarea>
+    </div>
+    </body>
+</html>
