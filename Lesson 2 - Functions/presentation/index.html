@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Web Applications [UAM]- by Damian Sosnowski</title>
+
+		<meta name="author" content="Damian Sosnowski">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Web Appliations</h1>
+					<h3>JavaScript - Functions</h3>
+					<p>Materials: <a href="https://github.com/sosnowski/Kurs_UAM">https://github.com/sosnowski/Kurs_UAM (winter2016)</a></p>
+				</section>
+
+				<section>
+				<h2>Functions</h2>
+
+				<p>Functions are the very essence of JavaScript. The language is build around them.</p>
+				</section>
+
+				<section>
+					<h3>Defining the function</h3>
+				<pre><code>
+function funcName() {
+	//function declaration
+}
+
+var func = function () {
+	//function expression
+}
+
+(function () {
+	//IIFE
+}())</code></pre>
+				</section>
+
+				<section>
+					<h4>Return values</h4>
+					<pre><code>
+var sum = function (arg1, arg2) {
+	return arg1 + arg2;
+};
+
+sum(5, 4); // 9</code></pre>
+					<h4>arguments</h4>
+					<pre><code>
+var sumAll = function () {
+	var sum = 0;
+	for (var i = 0; i < arguments.length; i++) {
+	    sum += arguments[i];
+	}
+	return sum;
+};</code></pre>
+				</section>
+
+
+				<section>
+					<h3>Closure</h3>
+					<pre><code>
+var times = function (t) {
+	return function (number) {
+	    return t * number;
+	};
+};
+
+var timesTwo = times(2);
+timesTwo(5); // 10
+timesTwo(4); //8</code></pre>
+<pre><code>
+var timesThree = times(3);
+timesThree(5); // 15
+timesThree(4); // 12</code></pre>
+				</section>
+
+				<section>
+					<h1>Exercise 1</h1>
+				</section>
+
+				<section>
+					<h2>Function context</h2>
+					<p>Is this the value of this?</p>
+				</section>
+
+				<section>
+					<pre><code>
+var obj {
+	method: function () {
+	    console.log(this);
+	}
+}
+obj.method(); // obj</code></pre>
+				<pre class="fragment"><code>
+var func = function () {
+	console.log(this);
+};
+
+func(); // window (global object);
+				</code></pre>
+				</section>
+
+				<section>
+					<h4>Context is dynamic, depends on how the function is called</h4>
+					<pre><code>
+obj.method(); // obj
+var func = obj.method;
+
+func(); // window
+</code></pre>
+				</section>
+
+				<section>
+					<h4>Every function has its own context</h4>
+					<pre><code>
+var obj = {
+	method: function () {
+	    console.log(this);
+
+	    (function () {
+	        console.log(this);
+	    }());
+	}
+}
+obj.method(); // obj; window;</code></pre>
+				</section>
+
+				<section>
+					<h4>Context can be changed</h4>
+				<pre><code>
+var obj = {}, func = function () {
+	console.log(this);
+};
+
+func(); // window
+func.apply(obj); //obj
+func.call(obj); //obj
+
+func(); //window</code></pre>
+<pre><code>
+var func2 = func.bind(obj);
+func2(); // obj
+func2(); // obj</code></pre>
+				</section>
+
+				<section>
+					<h4>Common problems</h4>
+					<pre><code>
+var form = {
+	checkSmth: function () { //... },
+	addSubmitAction: function () {
+	    // ...
+	    formEl.addEventListener('submit', function () {
+	        this.validateData(); // !
+	    });
+	},
+	validateData: function () {
+	    //fancy validation here
+	    this.checkSmth();
+	}
+}</code></pre>
+				</section>
+
+				<section>
+					<h4>Solutions</h4>
+					<pre><code>
+var form = {
+   checkSmth: function () { //... },
+   addSubmitAction: function () {
+      formEl.addEventListener('submit', this.validateData.bind(this));
+    },
+    validateData: function () {
+       this.checkSmth();
+    }
+}</code></pre>
+				</section>
+
+				<section>
+					<pre><code>
+var form = {
+   checkSmth: function () { //... },
+   addSubmitAction: function () {
+      var me = this;
+      formEl.addEventListener('submit', function () {
+          me.validateData();
+      });
+   },
+   validateData: function () {
+      me.checkSmth();
+   }
+}</code></pre>
+				</section>
+
+				<section>
+				<h1>Exercise 2</h1>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				width: 1600,
+				height: 1000,
+
+				theme: 'night', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
