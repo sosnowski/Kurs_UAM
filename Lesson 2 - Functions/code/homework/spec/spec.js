@@ -89,7 +89,7 @@ describe("Aircraft application tests", function() {
             var aircraft = { code: 'SP-XYZ', services: null };
             UAM.aircrafts = [ aircraft ];
             
-            expect(UAM.reduceTimeToExecute(aircraft, 10)).not.toThrow();
+            expect(function() { UAM.reduceTimeToExecute(aircraft, 10); }).not.toThrow();
         });
         
         it ("Get aircrafts for repair should return proper set of aircrafts", function() {
@@ -132,7 +132,7 @@ describe("Aircraft application tests", function() {
             var aircraft3 = { code: 'SP-DCE', services: null };
             UAM.aircrafts = [ aircraft1, aircraft2, aircraft3 ];
             
-            expect(UAM.getAircraftsForRepairs(90)).not.toThrow();
+            expect(function() { UAM.getAircraftsForRepairs(90); }).not.toThrow();
         });
 	});
 });
