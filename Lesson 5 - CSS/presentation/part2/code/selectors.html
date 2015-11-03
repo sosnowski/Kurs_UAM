@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Play! Selectors</title>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/play.css">
+	<style type="text/css">
+		a {
+			color: #ddd;
+			text-decoration: underline;
+		}
+		.box {
+			color: #fff;
+			text-shadow: 1px 1px 0 #333;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Play! Selectors</h1>
+		<section class="play">
+			<div class="editor">
+				<div class="code" contenteditable="true"></div>
+			</div>
+			<div class="result">
+				<div class="box">
+					<h1>Box Title</h1>
+					<a href="#">Hover me to hide the list</a>
+					<ol class="list">
+						<li>Item 1 <i class="fa fa-bomb"></i></li>
+						<li>
+							Item 2 <i class="fa fa-car"></i>
+							<ul>
+								<li>Subitem 1 <i class="fa fa-tree"></i></li>
+								<li>Subitem 2 <span>[span element]</span> <i class="fa fa-paw"></i></li>
+							</ul>	
+						</li>
+						<li>Item 3 <i class="fa fa-send"></i></li>
+					</ol>	
+				</div>
+			</div>
+		</section>
+	</div>
+	<script src="assets/js/lodash.min.js"></script>
+	<script src="assets/js/play.js"></script>
+</body>
+</html>
