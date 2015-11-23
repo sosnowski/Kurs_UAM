@@ -17,8 +17,10 @@ app.get('/today', function (req, res) {
 
 //POST /numbers should save number for later
 //GET /numbers should return comma separated list of numbers
-//DELETE /numbers should
-//GET /sum should return sum of stored numbers
+//DELETE /numbers should empty numbers array
+//GET /numbers/:op should return result of given operation of stored numbers (check request.params)
+// available operations are sum, difference, multiplication, division
+// return result as strings
 
 app.listen(8080, function () {
     console.log('Server is running on localhost:' + this.address().port);
