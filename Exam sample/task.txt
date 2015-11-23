@@ -1,0 +1,12 @@
+Przygotuj aplikacjê, która pozwoli dodawaæ informacje o urodzinach poszczególnych osób. Dodatkow¹ funkcjonalnoœci¹ dla chêtnych jest przygotowanie funkcjonalnoœci pozwalaj¹cej sprawdziæ kto obchodzi urodziny w wybranym miesi¹cu.
+
+W aplikacji pomijamy wszelk¹ walidacjê danych.
+
+Wymagane funkcjonalnoœci:
+- dodanie informacji o urodzinach dla osoby
+- jedna informacja sk³ada siê z danych osoby (imie, nazwisko) oraz dnia i miesi¹ca w którym obchodzone s¹ urodziny
+- aplikacja powinna wyœwietlaæ wszystkie informacje o urodzinach
+- aplikacja powinna umo¿liwiaæ usuniêcie dowolnego wpisu na temat urodzin
+
+Dla chêtnych
+- aplikacja powinna umo¿liwiaæ wypisanie wszystkich osób obchodz¹cych urodziny w danym miesi¹cu

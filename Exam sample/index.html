@@ -1,0 +1,52 @@
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Exam Sample</title>
+
+		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+	</head>
+
+	<body>
+		<div class="form">
+            <div>
+                <label for="firstName">Imie</label>
+                <input type="text" id="firstName">
+            </div>
+            
+            <div>
+                <label for="lastName">Nazwisko</label>
+                <input type="text" id="lastName">
+            </div>
+            
+            <div>
+                <label for="day">Dzień</label>
+                <input type="number" id="day" min="0" max="31">
+            </div>
+            
+            <div>
+                <label>Miesiąc</label>
+                <select id="months"></select>
+            </div>
+            
+            <div class="form-button-container">
+                <button id="addBirthday">Dodaj urodziny</button>
+            </div>
+        </div>
+        
+        <div class="birthday-list">
+            <label for="birthdayList">Urodziny:</label>
+            <ul id="birthdayList"></ul>
+        </div>
+        
+        <div class="birthday-check">
+            <select id="monthsForCheck"></select>
+            <button id="checkBirthday">Sprawdź urodziny</button>
+            <ul id="birthdayCheckList"></ul>
+        </div>
+	</body>
+
+	<script type="text/javascript" src="js/months.js"></script>
+    <script type="text/javascript" src="js/templates.js"></script>
+    <script type="text/javascript" src="js/readDOM.js"></script>
+    <script type="text/javascript" src="js/events.js"></script>
+</html>
