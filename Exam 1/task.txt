@@ -1,0 +1,12 @@
+Przygotuj aplikacjê, która pozwoli zarz¹dzaæ list¹ zadañ do wykonania, wed³ug za³¹czonego obrazka:
+http://blog.scottlogic.com/archive/2012/02/todomvc-closure.png
+ 
+1. Pole tekstowe z nazw¹ nowego zdania, po naciœniêciu enter zadanie dodaje siê do listy
+2. Lista zadañ aktualizowana po dodaniu, usuniêciu lub edycji dowolnego zadania.
+3. a-b) Oznaczenie zadania jako wykonane za pomoc¹ checkbox'a (*)
+   c) Edycja nazwy zadania
+   d) Usuwanie zadania z listy
+4. Liczba dodanych zadañ / liczba niewykonanych zadañ (*)
+5. Usuwanie z listy zadañ oznaczonych jako wykonane (*)
+ 
+(*) dodatkowo puntkowane
