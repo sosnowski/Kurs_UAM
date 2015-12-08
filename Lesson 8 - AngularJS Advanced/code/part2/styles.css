@@ -1,0 +1,62 @@
+body {
+	background: #000;
+	margin: 0;
+	padding: 0;
+	color: #FFF;
+}
+
+.list {
+	margin: 0 auto;
+	padding: 0;
+	width: 50%;
+	background: #004F33;
+	color: #000;
+}
+
+.list .field {
+	width: 80%;
+	margin: 0;
+	padding: 0;
+	height: 3em;
+	border: 0;
+}
+
+.list .submit {
+	width: 20%;
+	margin: 0;
+	padding: 0;
+	height: 3em;
+	background: #00A36A;
+	border: 0;
+}
+
+.list ul {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	list-style: none;
+}
+
+.list ul li {
+	margin: 2px 0;
+	padding: 0.5em;
+	padding-left: 2em;
+	display: block;
+	font-size: 2em;
+	background: #00A36A;
+	transition: background 1s, color 1s;
+	cursor: pointer;
+}
+
+.list ul li:hover {
+	color: #00A36A;
+	background: #004F33;
+}
+
+.list ul li.inactive {
+	background: gray;
+}
+
+.ng-scope {
+	border: 2px solid red !important;
+}

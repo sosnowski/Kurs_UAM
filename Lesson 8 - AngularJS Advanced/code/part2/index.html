@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en" ng-app="myapp">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Directives</title>
+
+    <script src="lib/angular.js"></script>
+    <script src="js/directive.js"></script>
+</head>
+
+<body>
+    <input ng-model="search" />
+    <ul ng-init="people = [ 'Leon Bridges', 'Johnny Cash', 'John Lennon', 'Aloe Blacc' ]">
+        <li ng-repeat="person in people | filter:search">{{person}}</li>
+    </ul>
+</body>
+
+</html>
