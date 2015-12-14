@@ -1,0 +1,6 @@
+{
+    // Custom Globals
+    "globals": {
+        "angular": true
+    }
+}

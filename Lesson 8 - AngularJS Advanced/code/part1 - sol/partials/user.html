@@ -1,0 +1,9 @@
+<h1>User</h1>
+<p>{{user.firstName}} {{user.lastName}}</p>
+<p>{{user.description}}</p>
+
+<button ui-sref="user.inventory({userId: userId})">Show inventory</button>
+<button ng-click="showFavs()">Show favorites</button>
+
+<!--Sub view should be rendered here -->
+<ui-view></ui-view>

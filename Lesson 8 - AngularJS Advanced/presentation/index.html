@@ -1,106 +1,106 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
 
-		<title>JavaScript induction</title>
+    <title>JavaScript induction</title>
 
-		<meta name="author" content="Damian Sosnowski">
+    <meta name="author" content="Damian Sosnowski">
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
 
-		<!-- Code syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
 
-	<body>
+<body>
 
-		<div class="reveal">
+    <div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
 
-				<section>
-					<h1>AngularJS induction</h1>
-					<h3>AngularJS - Routing and Directives</h3>
-					<p>Materials: <a href="https://github.com/sosnowski/angular-workshop/tree/v2">https://github.com/sosnowski/angular-workshop/tree/v2</a></p>
-				</section>
+            <section>
+                <h1>AngularJS induction</h1>
+                <h3>AngularJS - Routing and Directives</h3>
+                <p>Materials: <a href="https://github.com/sosnowski/Kurs_UAM">https://github.com/sosnowski/Kurs_UAM</a></p>
+            </section>
 
-				<section>
-						<h2>What is routing for SPA?</h2>
-						<p class="strong">http://localhost:8080/#/userslist</p>
-						<p class="strong">http://localhost:8080/#/users/:userId</p>
-						<p class="strong">http://localhost:8080/#/users/:userId/comments</p>
-				</section>
+            <section>
+                <h2>What is routing for SPA?</h2>
+                <p class="strong">http://localhost:8080/#/userslist</p>
+                <p class="strong">http://localhost:8080/#/users/:userId</p>
+                <p class="strong">http://localhost:8080/#/users/:userId/comments</p>
+            </section>
 
-				<section>
-						<h2>Why should we use it?</h2>
-						<ul>
-								<li>User friendly links</li>
-								<li>Browser history integration</li>
-								<li>Users can use and share links pointing to the application screens/states</li>
-						</ul>
-				</section>
+            <section>
+                <h2>Why should we use it?</h2>
+                <ul>
+                    <li>User friendly links</li>
+                    <li>Browser history integration</li>
+                    <li>Users can use and share links pointing to the application screens/states</li>
+                </ul>
+            </section>
 
-				<section>
-						<h2>Example application routing</h2>
-						<div class="wireframes">
-								<div class="screen1">
-										<p>Users List</p>
-								</div>
-								<div class="screen2">
-										<p>User Profile</p>
-								</div>
-								<div class="screen3">
-										<p>User Profile</p>
-										<div class="subscreen">
-												<p>User Comments</p>
-										</div>
-								</div>
+            <section>
+                <h2>Example application routing</h2>
+                <div class="wireframes">
+                    <div class="screen1">
+                        <p>Users List</p>
+                    </div>
+                    <div class="screen2">
+                        <p>User Profile</p>
+                    </div>
+                    <div class="screen3">
+                        <p>User Profile</p>
+                        <div class="subscreen">
+                            <p>User Comments</p>
+                        </div>
+                    </div>
 
-						</div>
-				</section>
+                </div>
+            </section>
 
-				<section>
-						<h2>Routing in AngularJS apps</h2>
-						<h3>ui-router</h3>
-						<p>Optional plugin for the angular framework: <a href="https://github.com/angular-ui/ui-router">https://github.com/angular-ui/ui-router</a></p>
-				</section>
+            <section>
+                <h2>Routing in AngularJS apps</h2>
+                <h3>ui-router</h3>
+                <p>Optional plugin for the angular framework: <a href="https://github.com/angular-ui/ui-router">https://github.com/angular-ui/ui-router</a></p>
+            </section>
 
-				<section>
-						<h2>Initial configuration</h2>
-<pre><code>
+            <section>
+                <h2>Initial configuration</h2>
+                <pre><code>
 &lt;!doctype html&gt;
 &lt;html ng-app=&quot;myApp&quot;&gt;
-	&lt;head&gt;
-		&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js&quot;&gt;&lt;/script&gt;
-		&lt;script src=&quot;js/angular-ui-router.min.js&quot;&gt;&lt;/script&gt;
-		&lt;script&gt;
-			var myApp = angular.module(&#39;myApp&#39;, [&#39;ui.router&#39;]);
-		&lt;/script&gt;
-	...
-	&lt;/head&gt;
-	&lt;body&gt;
-	...
-	&lt;/body&gt;
+    &lt;head&gt;
+        &lt;script src=&quot;//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;js/angular-ui-router.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script&gt;
+            var myApp = angular.module(&#39;myApp&#39;, [&#39;ui.router&#39;]);
+        &lt;/script&gt;
+    ...
+    &lt;/head&gt;
+    &lt;body&gt;
+    ...
+    &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-				</section>
+            </section>
 
-				<section>
-						<pre><code>
+            <section>
+                <pre><code>
 &lt;body&gt;
 &lt;h1&gt;Our cool application&lt;/h1&gt;
 &lt;--Application content will go here --&gt;
@@ -108,281 +108,289 @@
 &lt;div ui-view&gt;&lt;/div&gt;
 
 &lt;/body&gt;</code></pre>
-				</section>
+            </section>
 
-				<section>
-						<h2>Define states</h2>
-<pre><code>
+            <section>
+                <h2>Define states</h2>
+                <pre><code>
 angular.module('myapp', ['ui.router']).config(function($stateProvider) {
-	$stateProvider
-	.state('users', {
-		url: "/users",
-		controller: 'UsersListCtrl'
-		templateUrl: "partials/users-list.html"
-	})
-	.state('user', {
-		url: "/user/:userId",
-		templateUrl: "partials/user.html",
-		controller: 'UserProfileCtrl'
-	})
-	.state('user.comments', {
-		url: "/comments",
-		templateUrl: "partials/user/comments.html"
-	});
+    $stateProvider
+    .state('users', {
+        url: "/users",
+        controller: 'UsersListCtrl'
+        templateUrl: "partials/users-list.html"
+    })
+    .state('user', {
+        url: "/user/:userId",
+        templateUrl: "partials/user.html",
+        controller: 'UserProfileCtrl'
+    })
+    .state('user.comments', {
+        url: "/comments",
+        templateUrl: "partials/user/comments.html"
+    });
 });</code></pre>
-				</section>
+            </section>
 
-				<section>
-						<h2>Usage</h2>
-						<pre><code>
+            <section>
+                <h2>Usage</h2>
+                <pre><code>
 &lt;a href=&quot;#/user/66/comments&quot;&gt;Show comments&lt;/a&gt;
 &lt;a ui-sref=&quot;users&quot;&gt;Show List&lt;/a&gt;
 
 // In the controller
 
 module.controller('SomeCtrl', function($scope, $stateParams){
-	$scope.userId = $stateParams.userId;
+    $scope.userId = $stateParams.userId;
 });
 </code>
-				</section>
-				<section>
-						<h2>Let's write some code</h2>
-				</section>
+                </section>
+                <section>
+                        <h2>Let's write some code</h2>
+                </section>
 
-				<section>
-						<h2>Directives</h2>
-						<ul>
-								<li>ng-class</li>
-								<li>ng-model</li>
-								<li>ng-click</li>
-								<li>&lt;ng-include&gt;</li>
-								<li>...</li>
-						</ul>
-				</section>
+                <section>
+                        <h2>Directives</h2>
+                        <ul>
+                                <li>ng-class</li>
+                                <li>ng-model</li>
+                                <li>ng-click</li>
+                                <li>&lt;ng-include&gt;</li>
+                                <li>...</li>
+                        </ul>
+                </section>
 
-				<section>
-						<h4>Custom html elements/attributes that are compiled by Angular</h4>
-						<p>Used to create reusable components and write low level, DOM - related code</p>
-						<p>Can be simple: Custom input field, small html component</p>
-						<p>Can be complex: Big, reusable component with the defined controller</p>
-				</section>
+                <section>
+                        <h4>Custom html elements/attributes that are compiled by Angular</h4>
+                        <p>Used to create reusable components and write low level, DOM - related code</p>
+                        <p>Can be simple: Custom input field, small html component</p>
+                        <p>Can be complex: Big, reusable component with the defined controller</p>
+                </section>
 
-				<section>
-						<h3>Creating directive</h3>
-						<pre><code>
+                <section>
+                        <h3>Creating directive</h3>
+                        <pre><code>
 appMdl.directive('searchField', function () {
-	return {
-		//directive configuration here
-	};
+    return {
+        //directive configuration here
+    };
 });
 
 // in the template
 &lt;search-field&gt;&lt;/search-field&gt;
-						</code></pre>
-				</section>
+                        </code></pre>
+            </section>
 
-				<section>
-						<h4>Template</h4>
-						<pre><code>
+            <section>
+                <h4>Template</h4>
+                <pre><code>
 return {
-	template: 'some html code here',
-	//or
-	templateUrl: 'url/to/template.html'
+    template: 'some html code here',
+    //or
+    templateUrl: 'url/to/template.html'
 };
 </code></pre>
-				</section>
+            </section>
 
-				<section>
-						<h4>Link function</h4>
-						<pre><code>
+            <section>
+                <h4>Link function</h4>
+                <pre><code>
 return {
-	restrict: 'E', //only element
-	templateUrl: 'templates/search-field.html',
-	link: function (scope, element, attrs) {
-		//element is jquery lite object
-		element[0].querySelector('.clear').addEventListener('click', function () {
-				element[0].querySelector('input').value = '';
-		});
-	}
+    restrict: 'E', //only element
+    templateUrl: 'templates/search-field.html',
+    link: function (scope, element, attrs) {
+        //element is jquery lite object
+        element[0].querySelector('.clear').addEventListener('click', function () {
+                element[0].querySelector('input').value = '';
+        });
+    }
 }</code></pre>
-						<p>This is often all that you need</p>
-				</section>
+                <p>This is often all that you need</p>
+            </section>
 
-				<section>
-						<h3>Advanced directives</h3>
-						<p>Directives can have dedicated scope and controller</p>
-				</section>
+            <section>
+                <h3>Advanced directives</h3>
+                <p>Directives can have dedicated scope and controller</p>
+            </section>
 
-				<section>
-						<h3>Scope</h3>
-						<h4>"scope" attribute</h4>
-						<ul>
-								<li>scope: false (default) - No dedicated scope, it uses the scope of the parent controller/element</li>
-								<li>scope: true - New scope for the directive, it inherits from the parent scope</li>
-								<li>scope: {} - New scope, it's <strong>isolated</strong>. Does <strong>not</strong> inherit from the parent scope</li>
-						</ul>
-				</section>
+            <section>
+                <h3>Scope</h3>
+                <h4>"scope" attribute</h4>
+                <ul>
+                    <li>scope: false (default) - No dedicated scope, it uses the scope of the parent controller/element</li>
+                    <li>scope: true - New scope for the directive, it inherits from the parent scope</li>
+                    <li>scope: {} - New scope, it's <strong>isolated</strong>. Does <strong>not</strong> inherit from the parent scope</li>
+                </ul>
+            </section>
 
-				<section>
-						<h4>Isolated scope</h4>
-						<p>We can pass arguments, values to the directive</p>
-						<pre><code>
+            <section>
+                <h4>Isolated scope</h4>
+                <p>We can pass arguments, values to the directive</p>
+                <pre><code>
 return {
-	restrict: 'E',
-	scope: {
-		foo: '@' // scope.foo will the value of the "foo" attribute (string!),
-		bar: '=' // scope.bar will bind (two way!)
-		// to the parent scope value passed to the "bar" attribute
-		baz: '&' // expression will be executed in the parent context
-	}
+    restrict: 'E',
+    scope: {
+        foo: '@' // scope.foo will the value of the "foo" attribute (string!),
+        bar: '=' // scope.bar will bind (two way!)
+        // to the parent scope value passed to the "bar" attribute
+        baz: '&' // expression will be executed in the parent context
+    }
 };
 
 &lt;search-field foo=&quot;some value here&quot; bar=&quot;parentBar&quot;&gt;&lt;/search-field&gt;</code></pre>
-				</section>
+            </section>
 
-				<section>
-						<h4>Our scope</h4>
-						<pre><code>
+            <section>
+                <h4>Our scope</h4>
+                <pre><code>
 return {
-	scope: {
-		value: '=',
-		showClear: '@'
-	}
+    scope: {
+        value: '=',
+        showClear: '@'
+    }
 }
 &lt;search-field value=&quot;searchValue&quot; show-clear=&quot;true&quot;&gt;&lt;/search-field&gt;</code></pre>
-				</section>
+            </section>
 
-				<section>
-						<img src="img/dir_scopes.png" class="graph"/>
-				</section>
+            <section>
+                <img src="img/dir_scopes.png" class="graph" />
+            </section>
 
-				<section>
-						<h3>Controllers</h3>
-						<pre><code>
+            <section>
+                <h3>Controllers</h3>
+                <pre><code>
 return {
-	restrict: 'E',
-	scope: {
-		value: '=',
-		showClear: '@'
-	},
-	controller: 'ControllerName',
-	//or
-	controller: function ($scope, $element, $attrs) {
-		//standard controller logic
-		$scope.clear = function () {
-				$scope.value = '';
-		}
-	}
+    restrict: 'E',
+    scope: {
+        value: '=',
+        showClear: '@'
+    },
+    controller: 'ControllerName',
+    //or
+    controller: function ($scope, $element, $attrs) {
+        //standard controller logic
+        $scope.clear = function () {
+                $scope.value = '';
+        }
+    }
 }</code></pre>
-				</section>
+            </section>
 
-				<section>
-						<h4>Passing value by interpolation</h4>
-						<pre><code>
+            <section>
+                <h4>Passing value by interpolation</h4>
+                <pre><code>
 //in parent scope
 $scope.showClearButton = true;
 
 //template
 &lt;search-field value=&quot;searchValue&quot; show-clear=&quot;{{showClearButton}}&quot;&gt;&lt;/search-field&gt;
 </code></pre>
-				<p>It can be undefined when the controller is executed!</p>
-<pre><code>$attrs.$observe('showClear', function (attrValue) {
+                <p>It can be undefined when the controller is executed!</p>
+                <pre><code>$attrs.$observe('showClear', function (attrValue) {
 
 });</code></pre>
-				</section>
+            </section>
 
-				<section>
-						<h3>Directives communication</h3>
-						<p>Let's create a tab panel</p>
-						<pre><code>
+            <section>
+                <h3>Directives communication</h3>
+                <p>Let's create a tab panel</p>
+                <pre><code>
 &lt;tab-panel&gt;
 &lt;tab title=&quot;First tab&quot;&gt;&lt;/tab&gt;
 &lt;tab title=&quot;Second tab&quot;&gt;&lt;/tab&gt;
 &lt;tab title=&quot;Third tab&quot;&gt;&lt;/tab&gt;
 &lt;/tab-panel&gt;</code></pre>
 
-						<p>tabPanel and tab directives have to communicate</p>
-				</section>
+                <p>tabPanel and tab directives have to communicate</p>
+            </section>
 
-				<section>
-						<pre><code>
+            <section>
+                <pre><code>
 module.directive('tabPanel', function () {
-	return {
-		scope: {},
-		controller: function ($scope) {
-				this.addNewTab = function (newTabScope) {
-						//...
-				}
-		}
-	}
+    return {
+        scope: {},
+        controller: function ($scope) {
+                this.addNewTab = function (newTabScope) {
+                        //...
+                }
+        }
+    }
 });
 
 module.directive('tab', function () {
-	return {
-		//...
-		require: '^tabPanel',
-		link: function (scope, element, attrs, tabPanelCtrl) {
-				tabPanelCtrl.addNewTab(scope);
-		}
-	}
+    return {
+        //...
+        require: '^tabPanel',
+        link: function (scope, element, attrs, tabPanelCtrl) {
+                tabPanelCtrl.addNewTab(scope);
+        }
+    }
 });</code></pre>
-				</section>
+            </section>
 
-				<section>
-						<pre><code>require: "(prefix)directiveName"</code></pre>
-						<ul>
-<li>(no prefix) - Locate the required controller on the current element. Throw an error if not found.</li>
-<li>? - Attempt to locate the required controller or pass null to the link fn if not found.</li>
-<li>^ - Locate the required controller by searching the element and its parents. Throw an error if not found.</li>
-<li>^^ - Locate the required controller by searching the element's parents. Throw an error if not found.</li>
-<li>?^ - Attempt to locate the required controller by searching the element and its parents or pass null to the link fn if not found.</li>
-<li>?^^ - Attempt to locate the required controller by searching the element's parents, or pass null to the link fn if not found.</li>
-						</ul>
-				</section>
+            <section>
+                <pre><code>require: "(prefix)directiveName"</code></pre>
+                <ul>
+                    <li>(no prefix) - Locate the required controller on the current element. Throw an error if not found.</li>
+                    <li>? - Attempt to locate the required controller or pass null to the link fn if not found.</li>
+                    <li>^ - Locate the required controller by searching the element and its parents. Throw an error if not found.</li>
+                    <li>^^ - Locate the required controller by searching the element's parents. Throw an error if not found.</li>
+                    <li>?^ - Attempt to locate the required controller by searching the element and its parents or pass null to the link fn if not found.</li>
+                    <li>?^^ - Attempt to locate the required controller by searching the element's parents, or pass null to the link fn if not found.</li>
+                </ul>
+            </section>
 
-				<section>
-						<h2>Summation</h2>
-						<h4>When should I use directives?</h4>
-						<ul>
-								<li>To create reusable component</li>
-								<li>To add low level actions</li>
-								<li>Complex components can be composed from multiple directives</li>
-								<li>Use isolated scope for encapsulation</li>
-								<li>Place business logic in the controller</li>
-								<li>DOM - related code in the link function</li>
-						</ul>
-				</section>
-			</div>
+            <section>
+                <h2>Summation</h2>
+                <h4>When should I use directives?</h4>
+                <ul>
+                    <li>To create reusable component</li>
+                    <li>To add low level actions</li>
+                    <li>Complex components can be composed from multiple directives</li>
+                    <li>Use isolated scope for encapsulation</li>
+                    <li>Place business logic in the controller</li>
+                    <li>DOM - related code in the link function</li>
+                </ul>
+            </section>
+        </div>
 
-		</div>
+    </div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
 
-		<script>
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
 
-			// Full list of configuration options available at:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+            // Optional reveal.js plugins
+            dependencies: [
+                    // { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    // { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    // { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                {
+                    src: 'plugin/highlight/highlight.js',
+                    async: true,
+                    condition: function () {
+                        return !!document.querySelector('pre code');
+                    },
+                    callback: function () {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                    // { src: 'plugin/zoom-js/zoom.js', async: true },
+                    // { src: 'plugin/notes/notes.js', async: true }
+                ]
+        });
+    </script>
 
-				// Optional reveal.js plugins
-				dependencies: [
-					// { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					// { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					// { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-					// { src: 'plugin/zoom-js/zoom.js', async: true },
-					// { src: 'plugin/notes/notes.js', async: true }
-				]
-			});
+</body>
 
-		</script>
-
-	</body>
 </html>

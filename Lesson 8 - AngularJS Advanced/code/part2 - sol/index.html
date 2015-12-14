@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" ng-app="myapp">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Directives</title>
+
+    <style type="text/css">
+        .custom-text-field > input {
+            padding-right: 20px;
+        }
+
+        .custom-text-field > button {
+            position: relative;
+            left: -20px;
+            background: none;
+            border: none;
+        }
+    </style>
+
+    <script src="lib/angular.js"></script>
+    <script src="js/directive.js"></script>
+</head>
+
+<body>
+    <div text-field text-field-value="search" text-field-info="wartość do wyświetlenia"></div>
+    <ul ng-init="people = [ 'Leon Bridges', 'Johnny Cash', 'John Lennon', 'Aloe Blacc' ]">
+        <li ng-repeat="person in people | filter:search" red-on-hover>{{person}}</li>
+    </ul>
+</body>
+
+</html>
