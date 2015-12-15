@@ -1,0 +1,8 @@
+Przygotuj aplikacjê, która pozwoli zarz¹dzaæ list¹ zakupów, wed³ug za³¹czonego obrazka list.jpg
+ 
+1. Dwa pola tekstowe z nazw¹ nowego produktu i cen¹ produktu, po naciœniêciu enter w dowolnym z dwóch pól produkt dodaje siê do listy
+2. Lista zakupów aktualizowana po dodaniu, usuniêciu lub edycji dowolnej pozycji z listy.
+3. Ka¿dy element na liœcie mo¿e byæ edytowany. Edycja dotyczy wy³¹cznie nazwy.
+4. Ka¿dy produkt ma mieæ mo¿liwoœæ zwiêkszenia lub zmniejszenia iloœci sztuk. Na pocz¹tku iloœæ sztuk wynosi 1, ale ma byæ edytowana za pomoc¹ przycisków +/- lub strza³ka w górê/dó³. Po zwiêkszeniu iloœci sztuk cena w wierszu zostaje wyliczona jako cena podstawowa * iloœæ
+5. Usuwanie dowolnej pozycji z listy za pomoc¹ przycisku w ka¿dym wierszu. 6. Liczba dodanych produktów pod list¹
+7* sumaryczna cena wszystkich produktów pod list¹
