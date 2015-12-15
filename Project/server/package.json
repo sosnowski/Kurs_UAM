@@ -1,0 +1,16 @@
+{
+  "name": "project.server",
+  "version": "1.0.0",
+  "description": "Server for graded assignment.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tadeusz Makuch",
+  "license": "MIT",
+  "devDependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "lodash": "^3.10.1"
+  }
+}
