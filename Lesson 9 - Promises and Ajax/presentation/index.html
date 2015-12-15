@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Asynchronous JavaScript</title>
+
+        <meta name="author" content="Damian Sosnowski">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+        <script>
+            if( window.location.search.match( /print-pdf/gi ) ) {
+                var link = document.createElement( 'link' );
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = 'css/print/pdf.css';
+                document.getElementsByTagName( 'head' )[0].appendChild( link );
+            }
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+              <section>
+                  <h2>Asynchronous JavaScript</h2>
+                  <h4>(Promises and server communication)</h4>
+              </section>
+
+
+                <section>
+                    <h2>Synchronous (normal) code</h2>
+                    <pre><code>
+var a = 10;
+var b = 20;
+
+console.log(a);
+
+var c = a + b;
+
+console.log(c);</code></pre>
+                </section>
+                <section>
+                    <h3>Asynchronous code</h3>
+                    <pre><code>
+var a = 10;
+var b = 20;
+
+console.log(a)
+
+setTimeout(function() {
+    c = a + b;
+}, 0);
+
+console.log(c);
+</code></pre>
+                </section>
+
+                <section>
+                <h3>Asychronous operations</h3>
+                <ul>
+                    <li>timer functions - setTimeout, setInterval</li>
+                    <li>Ajax requests</li>
+                    <li>DOM events</li>
+                    <li>And more ...</li>
+                </ul>
+                </section>
+
+
+                <section>
+                <h3>More complex example</h3>
+                <ul>
+                    <li>Click button</li>
+                    <li>Wait one second</li>
+                    <li>Load another webpage</li>
+                    <li>Wait one second</li>
+                    <li>Display alert</li>
+                </ul>
+                </section>
+
+                <section>
+                    <h3>Asynchronous code</h3>
+                    <pre><code>
+var element = document.getElementById('my-button');
+
+element.addEventListener('click', function() {
+    document.body.innerHTML = "loading...";
+    setTimeout(function() {
+        var request = new XMLHttpRequest();
+        request.addEventListener('load', function(e) {
+            document.body.innerHTML = request.response;
+            setTimeout(function() {
+                alert("loaded");
+            }, 1000)
+        })
+        request.open('GET', 'https://fiddle.jshell.net')
+        request.send();
+    }, 1000);
+});
+                </code></pre>
+                </section>
+
+                <section>
+                <h3>What happened?</h3>
+                <ul>
+                    <li>Pyramid of doom / callback hell</li>
+                    <li>Flow is hardcoded and split between different functions</li>
+                    <li>Code is hard to test and reason about</li>
+                </ul>
+                </section>
+
+                <section>
+                <h3>Solution - Promises</h3>
+                <p>Instead of the final value,</p>
+                <p>the asynchronous method</p>
+                <p>returns a promise of having a value</p>
+                <p>at some point in the future.</p>
+                </section>
+
+
+                <section>
+                <h3>A Promise is in one of these states</h3>
+                <ul>
+                    <li>Pending: initial state, not fulfilled or rejected.</li>
+                    <li>Fulfilled: meaning that the operation completed successfully.</li>
+                    <li>Rejected: meaning that the operation failed.</li>
+                </ul>
+                </section>
+
+
+                                <section>
+                                    <h3>The same example</h3>
+                                    <pre><code>
+
+
+var element = document.getElementById('my-button');
+
+function waitOneSecond() {
+    return new Promise(function(resolve) {
+      setTimeout(resolve, 1000);
+    });
+};
+
+function loadPage() {
+    return new Promise(function(resolve, reject) {
+      var request = new XMLHttpRequest();
+      request.addEventListener('load', function(e) {
+      		resolve(request.response);
+      });
+      request.open('GET', 'https://sfiddle.jshells.net')
+      request.send();
+    })
+}
+
+                          </code></pre>
+                          </section>
+                          <section>
+                              <h3>The same example</h3>
+                              <pre><code>
+
+function setContent(content) {
+		document.body.innerHTML = content;
+}
+
+function showMessage() {
+   alert('done');
+}
+
+element.addEventListener('click', function() {
+    waitOneSecond()
+        .then(loadPage)
+        .then(setContent)
+        .then(waitOneSecond)
+        .then(showMessage)
+});
+                                </code></pre>
+                                </section>
+
+
+                                <section>
+                                    <h4>Promise can be rejected (if something goes wrong)</h4>
+                                    <pre><code>
+function loadPage() {
+    return new Promise(function(resolve, reject) {
+      var request = new XMLHttpRequest();
+      request.addEventListener('load', function(e) {
+      		resolve(request.response);
+      });
+      request.addEventListener('error', function(e) {
+          reject("Error")
+      })
+      request.open('GET', 'https://sfiddle.jshells.net')
+      request.send();
+    })
+}
+
+element.addEventListener('click', function() {
+    waitOneSecond()
+        .then(loadPage)
+        .then(setContent)
+        .then(waitOneSecond)
+        .then(showMessage)
+        .catch(setContent)
+});
+              </code></pre>  </section>
+
+                <section>
+                    <h3>Angular promises</h3>
+                    <img src="img/digest.png" class="graph"/>
+                    <pre><code>
+angular.module('myApp').controller('MyCtrl', function ($scope, $q) {
+    var addAsync = function (a, b) {
+        var defer = $q.defer();
+        setTimeout(function () {
+            defer.resolve(a + b);
+        }, 100);
+        return defer.promise;
+    };
+    addAsync().then(alert);
+});</code></pre>
+                </section>
+
+                <section>
+                    <h2>Client server communication</h2>
+                </section>
+
+                <section>
+                    <h2>HTTP Request</h2>
+                    <img src="img/http.png" class="graph"/>
+                </section>
+
+                <section>
+                    <h2>AJAX - Asynchronous http requests</h2>
+                    <ul>
+                        <li>Done in the background</li>
+                        <li>Page is not reloading</li>
+                        <li>Asynchronous - application is not waiting for the request to finish</li>
+                        <li>Can only load data from the same domain</li>
+                        <li>Stateless</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>REST</h2>
+                    <ul>
+                        <li>GET - Used for LIST and SHOW requests/li>
+                        <li>POST - Used for CREATE requests</li>
+                        <li>PUT - Used for UPDATE requests</li>
+                        <li>DELETE - Used for DELETE requests</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>AngularJS $http</h3>
+                    <pre><code>
+angular.module('app').controller('AppController', function ($scope, $http) {
+    $http.get('/url/to/resource.json')
+        .success(function (data, status, headers, config, statusText) {
+
+        }).error(function (data, status, headers, config, statusText) {
+
+    });
+});</code></pre>
+                </section>
+
+                <section>
+                    <h3>Other HTTP methods</h3>
+                    <pre><code>
+$http(config);
+$http.get(url);
+$http.post(url, data);
+$http.put(url, data);
+$http.delete(url);</code></pre>
+                </section>
+
+                <section>
+                    <h3>Configuration options</h3>
+                    <ul>
+    <li><strong>params</strong> – Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url. If the value is not a string, it will be JSONified</li>
+    <li><strong>data</strong>  – Data to be sent as the request message data</li>
+    <li><strong>headers</strong>  – Map of strings or functions which return strings representing HTTP headers to send to the server. If the return value of a function is null, the header will not be sent. Functions accept a config object as an argument</li>
+    <li><strong>cache</strong> – If true, a default $http cache will be used to cache the GET request, otherwise if a cache instance built with $cacheFactory, this cache will be used for caching</li>
+    <li><strong>timeout</strong> – timeout in milliseconds, or promise that should abort the request when resolved</li>
+    <li><strong>responseType</strong> - expected type of the response</li>
+                    </ul>
+                </section>
+
+                <section>
+                <h3>Since $http returns promise...</h3>
+                <pre><code>
+$http.get('/request1').then(function (res) {
+    return $http.get('/request2');
+}).then(function (res) {
+    //etc.
+});
+
+$q.all(req1, req2, req3).then();</code></pre>
+                </section>
+
+                <section>
+                    <h2>Let's code</h2>
+                </section>
+
+                <section>
+                    <h2>Angular $resource</h2>
+                    <pre><code>
+var User = $resource('/user/:userId', {userId:'@id'});
+var user = User.get({userId:123}, function() {
+  user.abc = true;
+  user.$save();
+});
+</code></pre>
+                </section>
+                <section>
+                    <h1>Let's code</h1>
+                </section>
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                width: 1600,
+                height: 1000,
+
+                theme: 'night', // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Parallax scrolling
+                // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+                // parallaxBackgroundSize: '2100px 900px',
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+    </body>
+</html>
