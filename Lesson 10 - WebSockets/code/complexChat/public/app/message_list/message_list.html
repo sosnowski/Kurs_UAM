@@ -1,0 +1,12 @@
+<div class="message-list">
+  <div ng-repeat="messageContent in ctrl.messages" class="message-item {{messageContent.type}}">
+    <avatar user="messageContent.user" ng-if="messageContent.type == 'message'"></avatar>
+    <div class="message-container">
+      <div class="meta">
+        <span class="author" ng-if="messageContent.user">{{messageContent.user.name}}</span><span class="date">{{messageContent.created_at | relativeDate }}</span>
+      </div>
+      <div class="message" formatted-message="messageContent.message">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+Stage 2 – what’s new?
+ - Pizzas in the menu should be grouped by number of ingredients.
+ - Ingredients customization popup.
+ - While adding each pizza to basket user should see a popup, where he can customize given pizza.
+ - Each pizza has two sets of ingredients – basic and extra. Removing of basic ingredients does not influence the price. Adding an extra ingredient influence pizza price by increasing it with the cost of ingredient.
+
+Stage 2 – what’s changed?
+- Each pizza contains two arrays – one for storing basic ingredient ids and one for extra ingredient ids.
+- There is new API for getting list of ingredients, each consisting of its id, display label and price.
+
+Stage 3 – what’s new?
+- An extra information on the order status screen.
+- Real-time updates for the order through web sockets.
+
+Stage 3 – what’s changed?
+- Finalize order gets and extra option to extras to the order – sauces and drinks.
+- Component must look the same as ingredients customization popup.
+- Customers don’t want to loose their unfinished orders when their refresh the tab or close and reopen the page.

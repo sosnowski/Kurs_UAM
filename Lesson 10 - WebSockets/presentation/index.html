@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Client - Server communication</title>
+
+		<meta name="description" content="Presentation about how communication between server and client works, and various strategies such as Ajax.">
+		<meta name="author" content="Dawid Jankowiak">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Overrides for this presentation -->
+		<link rel="stylesheet" href="styles.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Client - Server communication</h1>
+					<p>
+						<small>By Dawid Jankowiak</small>
+					</p>
+				</section>
+
+				<section>
+					<section>
+						<h2>HTTP communication</h2>
+						<p>
+							<img src="./assets/10-21-http-request.png" alt="" />
+						</p>
+					</section>
+
+					<section>
+						<h2>Page payload</h2>
+						<pre><code data-trim contenteditable>
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+
+    &lt;title&gt;Client - Server communication&lt;/title&gt;
+
+    &lt;meta name="description" content="Presentation about how communication between server and client works, and various strategies such as Ajax."&gt;
+    &lt;meta name="author" content="Dawid Jankowiak"&gt;
+
+    &lt;meta name="apple-mobile-web-app-capable" content="yes" /&gt;
+    &lt;meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /&gt;
+
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;
+
+    &lt;link rel="stylesheet" href="css/reveal.min.css"&gt;
+    &lt;link rel="stylesheet" href="css/theme/sky.css" id="theme"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;JavaScript Workshop&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+						</code></pre>
+					</section>
+					<section>
+						<h2>Response status codes</h2>
+						<ul>
+							<li><code>102</code></li>
+							<li><code>200</code></li>
+							<li><code>204</code></li>
+							<li><code>401</code></li>
+							<li><code>404</code></li>
+							<li><code>500</code></li>
+						</ul>
+						<p>
+							<a href="http://httpstatus.es/" target="_blank">List of status codes</a>
+						</p>
+					</section>
+					<section>
+						<h2>HTTP Verbs/Methods</h2>
+						<ul>
+							<li><code>GET</code></li>
+							<li><code>PUT</code></li>
+							<li><code>POST</code></li>
+							<li><code>DELETE</code></li>
+							<li><code>HEAD</code></li>
+						</ul>
+						<p>
+							<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html" target="_blank">HTTP/1.1 Chapter 9.</a>
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Introducing Asynchronous Javascritp And Xml</h2>
+						<ul>
+							<li>In 1995 Microsoft introduced <code>&lt;iframe&gt;</code></li>
+							<li>In 1996 Microsoft implemented <code>XMLHTTP</code> component</li>
+							<li>In 1999 Microsoft presented ActiveX XMLHTTP control, others presented <code>XMLHttpRequest</code> JavaScript object</li>
+							<li>In 2005 Jasse-James Garrett posted <a href="http://www.adaptivepath.com/ideas/ajax-new-approach-web-applications/" target="_blank">Ajax: A new approach to Web Applications</a></li>
+							<li>In 2006 W3C released the first draft specification for the <code>XMLHttpRequest</code></li>
+						</ul>
+					</section>
+					<section>
+						<h2>AHAH</h2>
+						<p>
+							"Asynchronous HTML and HTTP" or "Just Asynchronous HTML"
+						</p>
+						<p>
+							Subset of Ajax.
+						</p>
+						<p>
+							Introduced by Kevin Marks on May 12, 2005. Adopted as part of the REST-Enabled XHTML microformat for web services.
+						</p>
+						<p>
+							More info on <a href="http://microformats.org/wiki/rest/ahah" target="_blank">AHAH wiki</a>.
+						</p>
+					</section>
+					<section>
+						<h2>PJAX</h2>
+						<p>
+							Ajax combined with pushState (History API)
+						</p>
+						<p>
+							Provides real permalinks, page titles.
+						</p>
+						<p>
+							<a href="http://pjax.heroku.com/" target="_blank">Pjax page</a>
+						</p>
+					</section>
+					<section>
+						<h2>Comet</h2>
+						<p>
+							Also known as "Reverse Ajax" or "HTTP Streaming".
+						</p>
+						<p>
+							Dates back to 2000 and first attempts on creating real-time applications. The name come to be in 2006 as play on Ajax.
+						</p>
+						<p>
+							Various implementation: Streaming, Hidden iframe, XMLHttpRequest, Ajax with long polling, XMLHttpRequest long polling, Script tag long polling
+						</p>
+						<p>
+							See this on <a href="http://en.wikipedia.org/wiki/Comet_(programming)" target="_blank">wiki</a>
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Asynchronous code</h2>
+						<div>
+							<img src="assets/ASYNC.gif" alt="" />
+						</div>
+					</section>
+					<section>
+						<h2>Callbacks</h2>
+						<pre>
+							<code data-trim contenteditable>
+var fs = require('fs');
+fs.readFile('text.txt', function callback (content) {
+  console.log(content);
+});
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Promises</h2>
+						<h4>Deferred</h4>
+						<pre>
+							<code data-trim contenteditable>
+getUserPromise()
+  .then(function (user) {
+    return getAddressPromise(user.id);
+  })
+  .then(function (address) {
+    renderAddress(address);
+  }, handleError)
+  .done();
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Events</h2>
+						<pre>
+							<code data-trim contenteditable>
+var DocumentRow = Backbone.View.extend({
+	initialize: function () {
+		this.listenTo(this.model, 'change', this.render);
+	},
+	render: function () {
+		// render some stuff
+	}
+});
+
+// ...
+
+this.model.trigger('change', {title: 'New title'});
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Event Loop</h2>
+						<div>
+							<img src="assets/event_loop.png" alt="" />
+						</div>
+						<p>
+							<a href="http://blog.carbonfive.com/2013/10/27/the-javascript-event-loop-explained/">The JavaScript event loop explained</a>
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>XMLHttpRequest</h2>
+						<pre>
+							<code data-trim contenteditable>
+httpRequest = new XMLHttpRequest();
+httpRequest.onreadystatechange = function handleResult () {
+  if (httpRequest.readyState === 4) {
+    if (httpRequest.status === 200) {
+      // handle success
+      // and do something with
+      httpRequest.responseText;
+    } else {
+      // catch errors (or other messages)
+    }
+  }
+}
+httpRequest.open('GET', 'some-url.com');
+httpRequest.send();
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Methods</h2>
+						<ul>
+							<li><code>abort()</code> - Abords the request if it has already been sent</li>
+							<li><code>open(method, url [, async][, user][, password])</code> - Initialize a request<br>If called on already opened request will behave like <code>abord()</code></li>
+							<li><code>send([data])</code> - sends the request, optionally with message body</li>
+							<li><code>setRequestHeader(header, value)</code> - sets header value, must be called after <code>open()</code> and before <code>send()</code> </li>
+						</ul>
+					</section>
+					<section>
+						<h2>Properties</h2>
+						<ul>
+							<li><code>onreadystatechange</code> - function that will be called whenever <code>readyState</code> changes</li>
+							<li><code>readyState</code> - the state of the request
+								<ul>
+									<li>0 - UNSET</li>
+									<li>1 - OPENED</li>
+									<li>2 - HEADERS_RECEIVED</li>
+									<li>3 - LOADING</li>
+									<li>4 - DONE</li>
+								</ul>
+							</li>
+							<li><code>status</code> - HTTP response status code</li>
+							<li><code>responseText</code> - response as text, or null if the request was unsuccessful</li>
+						</ul>
+					</section>
+					<section>
+						<p>
+							<a href="https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest#Properties">MDN XMLHttpRequest spec</a>
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<h2>Lets code</h2>
+				</section>
+
+				<section>
+					<section>
+						<h2>Ajax Drawbacks</h2>
+						<ul>
+							<li>No browser history</li>
+							<li>No search engine interaction</li>
+							<li>Server load can increase</li>
+							<li>Security (<a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy" target="_blank">Same-origin policy</a>)</li>
+							<li>Not so good in file uploading</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Overcoming Ajax Drawbacks</h2>
+						<ul>
+							<li>History API</li>
+							<li>JSONP</li>
+							<li>CORS</li>
+							<li>FormData in XMLHttpRequest2</li>
+						</ul>
+					</section>
+					<section>
+						<h2>JSONP</h2>
+						<p>
+							JSON with padding
+						</p>
+						<pre>
+							<code data-trim contenteditable>
+function handle_data (data) {
+  // data respresents a response JSON object
+}
+							</code>
+						</pre>
+						<p>
+							By creating script tag with src attribute pointing to <code>http://some-page.com/service?callback=handle_data</code>
+							<br>
+							You get a script that calls callback function with response JSON object as argument
+							<br>
+							<strong>More workaround than proper solution</strong>
+						</p>
+					</section>
+					<section>
+						<h2>CORS</h2>
+						<p>
+							Cross-Origin Resource Sharing
+						</p>
+						<p>
+							To use it in the browser check if <code>XMLHttpRequest</code> object have <code>withCredentials</code> property
+							<br>
+							<em>for non IE browsers</em>
+						</p>
+						<p>
+							In IE check if there is <code>XDomainRequest</code> object.
+						</p>
+						<p>
+							<strong>Must be supported by server as well</strong>
+							<pre>
+								<code data-trim contenteditable>
+Access-Control-Allow-Origin: http://some-page.com
+Access-Control-Allow-Credentials: true
+Access-Control-Expose-Headers: FooBar
+Content-Type: text/html; charset=utf-8
+								</code>
+							</pre>
+						</p>
+						<p>
+							<a href="http://www.html5rocks.com/en/tutorials/cors/" target="_blank">More on HTML 5 Rocks</a>
+						</p>
+					</section>
+					<section>
+						<h2>FormData</h2>
+						<p>
+							<code>new FormData([form])</code> constractor object takes optionaly HTMLFormElement.
+						</p>
+						<p>
+							<code>append(name, value [, filename])</code> - method adds key value pair to formData object. Value can be a string, file or blob (if one of last two then method can optionaly take third parameter, a file name).
+						</p>
+						<p>
+							More info at <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData">MDN page</a>
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<h2>Lets code</h2>
+				</section>
+
+				<section>
+					<section>
+						<h2>Web Sockets</h2>
+						<p>
+							Allows to establish a continous full-duplex connection stream between server and client.
+						</p>
+						<p>
+							Currently supported by <a href="http://caniuse.com/#feat=websockets" target="_blank">75% of all browsers in use</a>
+						</p>
+						<pre>
+							<code data-trim contenteditable>
+var socket = new WebSocket('ws://some-page.com');
+socket.onerror = function (error) {
+  // handle error
+};
+socket.onopen = function (event) {
+  // handle connection open
+};
+socket.onmessage = function (event) {
+  var data = event.data;
+  // handle data message
+};
+socket.onclose = function (event) {
+  // handle close
+};
+// ...
+socket.send(message);
+// ...
+socket.close();
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Methods</h2>
+						<ul>
+							<li><code>WebSocket(url [, protocols])</code> - Constructor. Takes url of WebSocket server, and optionaly a sub-protocols</li>
+							<li><code>send(data)</code> -  Transmit data to the server. Data can by a string, ArrayBuffer, Blob object.</li>
+							<li><code>close([code][, reason])</code> - Closes connection. If connection is already CLOSED this method does nothing. Code is a numeric value indicating why connections is being closed. Reason is a human-readable text explaining why connection is closing.</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Attributes</h2>
+						<ul>
+							<li>Event listeners
+								<ul>
+									<li><code>onclose</code> - called when <code>readyState</code> change to <code>CLOSED</code></li>
+									<li><code>onerror</code> - called when error occurs</li>
+									<li><code>onmessage</code> - called when a message is recived</li>
+									<li><code>onopen</code> - called when <code>readyState</code> change to <code>OPEN</code></li>
+								</ul>
+							</li>
+							<li><code>protocol</code> - a string indicating the name of the sub-protocol</li>
+							<li><code>readyState</code> - the current state of the connection
+								<ul>
+									<li>0 - CONNECTING</li>
+									<li>1 - OPEN</li>
+									<li>2 - CLOSING</li>
+									<li>3 - CLOSED</li>
+								</ul>
+							</li>
+						</ul>
+						<a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket" target="_blank">Link to documentation</a>
+					</section>
+				</section>
+
+				<section>
+					<h2>Lets code</h2>
+				</section>
+
+				<section>
+					<h2>WebRTC</h2>
+					<p>
+						Plugin free Real Time Communication peer-to-peer in web browsers
+					</p>
+					<br>
+					<p>
+						Main tasks
+					</p>
+					<ul>
+						<li>Acquiring audio and video</li>
+						<li>Communicationg audio and video</li>
+						<li>Communication arbitrary data</li>
+					</ul>
+					<p>
+						<br>
+						If intrested see <a href="http://www.html5rocks.com/en/tutorials/webrtc/basics/">WebRTC basics</a> on HTML5 Rocks
+					</p>
+				</section>
+
+				<section>
+					<h2>Thank you</h2>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
