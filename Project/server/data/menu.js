@@ -2,163 +2,163 @@ module.exports = [
     {
         id: 1,
         name: 'Margherita',
-        ingredients: ['Sos', 'Ser'],
+        ingredients: [1, 2],
         price: 14.90
     },
     {
         id: 2,
         name: 'Funghi ',
-        ingredients: ['Sos', 'Ser', 'Pieczarki'],
+        ingredients: [1, 2, 3],
         price: 16.90
     },
     {
         id: 3,
         name: 'Vesuvio',
-        ingredients: ['Sos', 'Ser', 'Szynka'],
+        ingredients: [1, 2, 4],
         price: 17.90
     },
     {
         id: 4,
         name: 'Salami',
-        ingredients: ['Sos', 'Ser', 'Salami'],
+        ingredients: [1, 2, 5],
         price: 17.90
     },
     {
         id: 5,
         name: 'Capriciosa',
-        ingredients: ['Sos', 'Ser', 'Szynka', 'Pieczarki'],
+        ingredients: [1, 2, 4, 3],
         price: 19.90
     },
     {
         id: 6,
         name: 'Hawajska',
-        ingredients: ['Sos', 'Ser', 'Szynka', 'Ananas'],
+        ingredients: [1, 2, 4, 6],
         price: 19.90
     },
     {
         id: 7,
         name: 'Toscana',
-        ingredients: ['Sos', 'Ser', 'Salami', 'Pieczarki'],
+        ingredients: [1, 2, 5, 3],
         price: 19.90
     },
     {
         id: 8,
         name: 'Tono',
-        ingredients: ['Sos', 'Ser', 'Tuńczyk', 'Cebula'],
+        ingredients: [1, 2, 7, 8],
         price: 20.90
     },
     {
         id: 9,
         name: 'Peperone',
-        ingredients: ['Sos', 'Ser', 'Salami', 'Papryka peperoni', 'Cebula'],
+        ingredients: [1, 2, 5, 9, 8],
         price: 21.90
     },
     {
         id: 10,
         name: 'Sandra',
-        ingredients: ['Sos', 'Ser', 'Salami', 'Pomidor', 'Cebula'],
+        ingredients: [1, 2, 5, 10, 8],
         price: 21.90
     },
     {
         id: 11,
         name: 'Pescatore',
-        ingredients: ['Sos', 'Ser', 'Tuńczyk', 'Cebula', 'Kapary'],
+        ingredients: [1, 2, 7, 8, 11],
         price: 22.90
     },
     {
         id: 12,
         name: 'Bolonia',
-        ingredients: ['Sos', 'Ser', 'Szynka', 'Pieczarki', 'Papryka', 'Cebula'],
+        ingredients: [1, 2, 4, 3, 12, 8],
         price: 23.90
     },
     {
         id: 13,
         name: 'Milano',
-        ingredients: ['Sos', 'Ser', 'Szynka', 'Kabanos', 'Papryka', 'Kukurydza'],
+        ingredients: [1, 2, 4, 13, 12, 14],
         price: 24.90
     },
     {
         id: 14,
         name: 'Vegetariana ',
-        ingredients: ['Sos', 'Ser', 'Pieczarki', 'Papryka', 'Kukurydza', 'Cebula'],
+        ingredients: [1, 2, 3, 12, 14, 8],
         price: 22.90
     },
     {
         id: 15,
         name: 'Rzeźnicka',
-        ingredients: ['Sos', 'Ser', 'Szynka', 'Salami', 'Bekon', 'Kabanos', 'Cebula'],
+        ingredients: [1, 2, 4, 5, 15, 13, 8],
         price: 26.90
     },
     {
         id: 16,
         name: 'Pizza Kebab',
-        ingredients: ['Sos', 'Ser', 'Kebab drobiowy', 'Cebula', 'Kapusta pekińska', 'Pomidor'],
+        ingredients: [1, 2, 16, 8, 17, 10],
         price: 26.90
     },
     {
         id: 17,
         name: 'La Mafia',
-        ingredients: ['Sos', 'Ser', 'Szynka', 'Bekon', 'Pieczarki', 'Cebula'],
+        ingredients: [1, 2, 4, 15, 3, 8],
         price: 24.90
     },
     {
         id: 18,
         name: 'Meksykańska',
-        ingredients: ['Sos', 'Ser', 'Szynka', 'Salami', 'Papryka', 'Cebula', 'Kukurydza'],
+        ingredients: [1, 2, 4, 5, 12, 8, 14],
         price: 25.90
     },
     {
         id: 19,
         name: 'MARIO',
-        ingredients: ['Sos', 'Ser', 'Szynka', 'Salami', 'Pomidor', 'Camembert'],
+        ingredients: [1, 2, 4, 5, 10, 18],
         price: 25.90
     },
     {
         id: 20,
         name: 'Rimini',
-        ingredients: ['Sos', 'Ser', 'Szynka', 'Salami', 'Pieczarki', 'Cebula'],
+        ingredients: [1, 2, 4, 5, 3, 8],
         price: 24.90
     },
     {
         id: 21,
         name: 'Farmerska',
-        ingredients: ['Sos', 'Ser', 'Bekon', 'Boczek', 'Kabanos', 'Pieczarki', 'Cebula'],
+        ingredients: [1, 2, 15, 23, 13, 3, 8],
         price: 25.90
     },
     {
         id: 22,
         name: 'Kebab Pizza 2',
-        ingredients: ['Sos', 'Ser', 'Kebab drobiowy', 'Cebula', 'Papryka peperoni'],
+        ingredients: [1, 2, 16, 8, 9],
         price: 24.90
     },
     {
         id: 23,
         name: 'Americana (grube ciasto)',
-        ingredients: ['Sos', 'Ser', 'Szynka', 'Kebab drobiowy', 'Pieczarki', 'Cebula'],
+        ingredients: [1, 2, 4, 16, 3, 8],
         price: 25.90
     },
     {
         id: 24,
         name: 'Frutti di Mare',
-        ingredients: ['Sos', 'Ser', 'Tuńczyk', 'Krewetki', 'Małże'],
+        ingredients: [1, 2, 7, 19, 20],
         price: 25.90
     },
     {
         id: 25,
-        name: 'Uczta Serowa ',
-        ingredients: ['Sos', 'Ser', 'Lazur', 'Camembert', 'Extra ser'],
+        name: 'Uczta Serowa',
+        ingredients: [1, 2, 22, 18, 2],
         price: 25.90
     },
     {
         id: 26,
         name: 'Brocoli',
-        ingredients: ['Sos', 'Ser', 'Szynka', 'Brokuły', 'Camembert'],
+        ingredients: [1, 2, 4, 21, 18],
         price: 23.90
     },
     {
         id: 27,
         name: 'Sicilia',
-        ingredients: ['Sos', 'Ser', 'Szynka', 'Ananas', 'Kukurydza'],
+        ingredients: [1, 2, 4, 6, 14],
         price: 21.90
     }
 ];

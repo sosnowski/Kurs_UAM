@@ -11,6 +11,7 @@
   "devDependencies": {
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
-    "lodash": "^3.10.1"
+    "lodash": "^3.10.1",
+    "websocket": "^1.0.22"
   }
 }
