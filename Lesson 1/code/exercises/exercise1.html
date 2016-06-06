@@ -4,11 +4,19 @@
   <title>Exercise 1</title>    
 </head>  
   
-<body>  
-    
-    <p>Check Variables: x = ?, y = ?, z = ?</p>
-    <p>Test: x = ?, y = ?, z = ?</p>
-    <p>Check Variables: x = ?, y = ?, z = ?</p>
+<body>
+    <!-- 
+        1. Open this document side-by-side on browser (with js console opened) and code editor.
+        2. Analyse JavaScript code below, keep in mind function scope :)
+        3. Try to guess values variable values in each part of exercise (points 1,2,3)
+        4. Test it and put values in the comments. 
+    -->
+    <h1>Guess and click game</h1>
+    <ol>
+        <li>Click "Check Variables": x = ?, y = ?, z = ?</li>
+        <li>Click "Test": x = ?, y = ?, z = ?</li>
+        <li>Click "Check Variables": x = ?, y = ?, z = ?</li>
+    </ol>
     
     <button id="testButton">Test</button>
     <button id="checkVariablesButton">Check Variables</button>
@@ -17,10 +25,11 @@
         var x = 4;
         y = 10;
         
-        function checkVariables() {
+        function checkVariables() {       
             alert('x: ' + x); //x = ??
             alert('y: ' + y); //y = ??
             alert('z: ' + z); //z = ??
+
         }
         
         function test() {
@@ -32,6 +41,7 @@
             alert('y: ' + y); //y = ??
             alert('z: ' + z); //z = ??
         }
+        
         
     </script>
     

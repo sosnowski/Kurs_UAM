@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #828281;
+}
+
+.playArea {
+  width: 800px;
+  height: 600px;
+  background: #020101;
+  border: 10px solid #334343;
+  margin: 30px auto 0;
+  box-shadow: 5px 5px 10px #445474;
+}
+
+.ship {
+  width: 64px;
+  height: 64px;
+  background-image: url("http://pixeljoint.com/files/icons/spaceship1_final.png");
+  position: absolute;
+}
